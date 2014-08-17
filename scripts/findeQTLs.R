@@ -7,7 +7,7 @@
 library(MatrixEQTL)
 
 ## Location of the package with the data files.
-base.dir = "."; #Insert your directory here
+base.dir = "../sample_data/"; #Insert your directory here
 
 ## Settings
 
@@ -31,7 +31,7 @@ output_file_name_cis = tempfile();
 output_file_name_tra = tempfile();
 
 # Only associations significant at this level will be saved
-pvOutputThreshold_cis = 1e-3;
+pvOutputThreshold_cis = 1e-2;
 pvOutputThreshold_tra = 1e-3; #Set to 0 if you do not want trans-eQTLs
 
 # Error covariance matrix
@@ -45,7 +45,7 @@ cisDist = 1e6;
 ## Load genotype data
 
 snps = SlicedData$new();
-snps$fileDelimiter = " ";      # the SPACE character
+snps$fileDelimiter = "\t";      # the SPACE character
 snps$fileOmitCharacters = "-1"; # denote missing values;
 snps$fileSkipRows = 1;          # one row of column labels
 snps$fileSkipColumns = 1;       # one column of row labels
@@ -74,7 +74,7 @@ if(length(covariates_file_name)>0) {
 }
 
 ## Run the analysis
-snpspos = read.table(snps_location_file_name, header = FALSE, stringsAsFactors = FALSE);
+snpspos = read.table(snps_location_file_name, header = TRUE, stringsAsFactors = FALSE);
 genepos = read.table(gene_location_file_name, header = TRUE, stringsAsFactors = FALSE);
 
 me = Matrix_eQTL_main(

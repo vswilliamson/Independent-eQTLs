@@ -4,16 +4,16 @@ function(geneExpressionFile, genotypeFile, genelocFile, snpslocFile, me)
     GE <- read.table(geneExpressionFile, header = TRUE)
     row.names(GE) <- GE[,1]
     GE <- GE[,-1]
-    GE.train <- GE[,1:floor(ncol(GE))]
-    GE.test <- GE[,floor(ncol(GE)) + 1:ncol(GE)]
+    GE.train <- GE[,1:floor(ncol(GE)/2)]
+    GE.test <- GE[,(floor(ncol(GE)/2) + 1):ncol(GE)]
 
     SNP <- read.table(genotypeFile, header = TRUE, na.strings = c("-1"))
     row.names(SNP) <- SNP[,1]
-    row.names(SNP) <- gsub(":", ".", row.names(SNP.t))
+    row.names(SNP) <- gsub(":", ".", row.names(SNP))
     SNP <- SNP[,-1]
     SNP.t <- as.data.frame(t(SNP))
-    SNP.train <- SNP[1:floor(nrow(SNP.t)),]
-    SNP.test <- SNP[floor(nrow(SNP.t)) + 1:nrow(GE),]
+    SNP.train <- SNP.t[1:floor(nrow(SNP.t)/2),]
+    SNP.test <- SNP.t[(floor(nrow(SNP.t)/2) + 1):nrow(SNP.t),]
 
     eQTLs <- me$cis$eqtls
     eQTLs$snps <- gsub(":", ".", eQTLs$snps)
