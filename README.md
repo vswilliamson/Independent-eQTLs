@@ -16,7 +16,7 @@ source("findeQTLs.R")
 ```
 This script, adapted from [http://www.bios.unc.edu/research/genomic_software/Matrix_eQTL/R.html](http://www.bios.unc.edu/research/genomic_software/Matrix_eQTL/), finds cis/trans-eQTLs and stores them in the R environment as `me`. Edit the script to fit your own preferences. Further help can be found at [http://www.bios.unc.edu/research/genomic_software/Matrix_eQTL/](http://www.bios.unc.edu/research/genomic_software/Matrix_eQTL/).
 
-**Note: You may need to edit the script depending on what format your data is in.**
+**Note: You may need to edit the script depending on the format of your data.**
 
 ### setUpEnvironment.R ###
 ```
@@ -33,14 +33,12 @@ This script takes in the input and output data of Matrix eQTL and outputs a list
 
 ##### Output #####
 A list containing these data frames:
-- **SNP.t**: The transpose of `SNP.txt`.
+- **SNP.t**: The transpose of the data from `SNP.txt`.
 - **SNP.train**: A subset of `SNP.t` to act as a training set.
 - **SNP.test**: A subset of `SNP.t` to act as a test set.
 - **GE**: The data from `GE.txt`.
 - **GE.train**: A subset of `GE` to act as a training set.
 - **GE.test**: A subset of `GE` to act as a test set.
+- **geneloc**: The gene location data from `geneloc.txt`.
+- **snpsloc**: The SNP location data from `snpsloc.txt`.
 
-
-## TODO ##
-- Add more text to slides for context
-- Add plots and scripts
