@@ -24,14 +24,14 @@ setUpEnvironment(geneExpressionFile, genotypeFile, genelocFile, snpslocFile, me)
 ```
 This script takes in the input and output data of Matrix eQTL and outputs a list of data frames needed for the other scripts. **It assumes your data has the same format (i.e. contains headers and row names) as the sample data, so modify your sample data or the script accordingly.**
 
-##### Input ######
+##### Input: ######
 - **geneExpressionFile**: The location of the gene expression data. Equivalent to `GE.txt` in the sample data.
 - **genotypeFile**: The location of the genotype data. Equivalent to `SNP.txt` in the sample data.
 - **genelocFile**: The location of the gene location data. Equivalent to `geneloc.txt` in the sample data.
 - **snpslocFile**: The location of the SNP location data. Equivalent to `snpsloc.txt` in the sample data.
 - **me**: The object that Matrix eQTL outputs. Equivalent to `me` in `setUpEnvironment.R`.
 
-##### Output #####
+##### Returns: #####
 A list containing these data frames:
 - **SNP.t**: The transpose of the data from `SNP.txt`.
 - **SNP.train**: A subset of `SNP.t` to act as a training set.

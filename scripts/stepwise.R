@@ -1,8 +1,10 @@
+#Adapted from http://www.bioconductor.org/packages/release/bioc/html/maSigPro.html
+
 "stepwise" <-
-function (y, d, gene, method = "pvalue", direction = "forward", steps = 100)
+function (GE, SNPs, eQTLs, gene, method = "pvalue", direction = "forward", steps = 100)
 {
-    y <- as.numeric(y[gene,])
-    d <- d[as.character(eQTLs[eQTLs$gene == gene, 1])]
+    y <- as.numeric(GE[gene,])
+    d <- SNPs[as.character(eQTLs[eQTLs$gene == gene, 1])]
     if(nrow(na.omit(d)) == 0)
     { 
         return(NULL)
