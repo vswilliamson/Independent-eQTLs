@@ -29,7 +29,7 @@ function (GE, SNPs, eQTLs, gene, method = "pvalue", direction = "forward", steps
         return(step(null, scope = list(lower = null, upper = full), direction = direction, steps = steps, trace = 0))
     }
 
-    #lars lasso
+    #DEPRECIATED: lars lasso
     if (method == "lars") {
         library("lars")
         if(nrow(summary(lm(y ~ ., data = d, na.action = na.exclude))$coefficients) == 1)

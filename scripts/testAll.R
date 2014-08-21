@@ -1,6 +1,12 @@
 "testAll" <-
 function(GE, SNPs, eQTLs, method = "pvalue", direction = "forward", steps = 100, verbose = TRUE)
-{   
+{
+    if(method != "pvalue" && method != "AIC") {
+        stop("'method' must be equal to \"pvalue\" or \"AIC\"")
+    }
+    if(direction != "forward" && direction != "both") {
+        stop("'direction' must be equal to \"forward\" or \"both\"")
+    }
     source("stepwise.R")
 
     genes <- character()
