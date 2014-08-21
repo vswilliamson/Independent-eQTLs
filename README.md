@@ -66,3 +66,9 @@ A list containing a list and a data frame:
 ..- numind: The number of independent eQTLs.
 ..- rsquared: The r-squared value that the SNPs yield for that gene.
 - **snps**: A list of lists. The i-th list corresponds to the list of SNPs for the i-th gene in `indeQTLs`.
+
+###### Todo: ######
+- plotsix
+- plotindividualr2
+- calcanova
+- CV
