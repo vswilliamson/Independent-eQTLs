@@ -26,7 +26,7 @@ function (GE, SNPs, eQTLs, gene, method = "pvalue", direction = "forward", steps
         d.no.na$y <- NULL
         null <- lm(formula = y.no.na~1, data = d.no.na)
         full <- lm(formula = y.no.na~., data = d.no.na)
-        return(step(null, scope = list(lower = null, upper = full), direction = direction, steps = steps))
+        return(step(null, scope = list(lower = null, upper = full), direction = direction, steps = steps, trace = 0))
     }
 
     #lars lasso
