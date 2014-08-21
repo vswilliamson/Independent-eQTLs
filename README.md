@@ -32,7 +32,7 @@ This script takes in the input and output data of Matrix eQTL and outputs a list
 - **me**: The object that Matrix eQTL outputs. Equivalent to `me` in `setUpEnvironment.R`.
 
 ##### Returns: #####
-A list containing these data frames:
+A list containing these data frames *(you can use these data frames in the scripts after this)*:
 - **SNP.t**: The transpose of the data from `SNP.txt`.
 - **SNP.train**: A subset of `SNP.t` to act as a training set.
 - **SNP.test**: A subset of `SNP.t` to act as a test set.
@@ -41,4 +41,28 @@ A list containing these data frames:
 - **GE.test**: A subset of `GE` to act as a test set.
 - **geneloc**: The gene location data from `geneloc.txt`.
 - **snpsloc**: The SNP location data from `snpsloc.txt`.
+- **eQTLs**: A data frame of the cis-eQTLs that Matrix eQTL outputs.
+- **besteQTLs**: A data frame of the cis-eQTLs that Matrix eQTL outputs, with only one eQTL (the lowest p-value) per gene.
 
+### testAll.R ###
+```
+testAll(GE, SNPs, eQTLs, method = "pvalue", direction = "forward", steps = 100, verbose = TRUE)
+```
+This script finds independent eQTLs for every gene in your data and returns information about these eQTLs.
+
+##### Input: #####
+- **GE**: Gene expression data.
+- **SNPs**: Corresponds to SNP.t; the genotype data.
+- **eQTLs**: A data frame of the cis-eQTLs that Matrix eQTL outputs. 
+- **method**: Can take on the value "pvalue" or "AIC", correponding to the criterion by which the algorithm selects SNPs.
+- **direction**: Can take on the value "forward" or "both". "forward" corresponds to a unidirectional method and "both" corresponds to a bidirectional method. 
+- **steps**: The number of maximum steps the algorithm can take, so it doesn't go on forever in a loop deleting and adding a SNP. The default is 100.
+- **verbose**: If `TRUE`, the script will print its progress. Otherwise, the script does not print anything.
+
+##### Returns: #####
+A list containing a list and a data frame:
+- **indEQTLs**: A data frame with three columns:
+..- genes: The gene.
+..- numind: The number of independent eQTLs.
+..- rsquared: The r-squared value that the SNPs yield for that gene.
+- **snps**: A list of lists. The i-th list corresponds to the list of SNPs for the i-th gene in `indeQTLs`.
