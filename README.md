@@ -67,6 +67,20 @@ A list containing a list and a data frame:
 ..- rsquared: The r-squared value that the SNPs yield for that gene.
 - **snps**: A list of lists. The i-th list corresponds to the list of SNPs for the i-th gene in `indeQTLs`.
 
+### plotsix.R ###
+```
+plotsix(df, snps, sortBy="beta")
+```
+This function produces the figures in slides 9-12 of my powerpoint. The figures compare the distribution of SNPs around the TSS for the best eQTL reported by Matrix eQTL, and for the first five SNPs in genes with 5 or more independent eQTLs. It uses firstfive.R. 
+
+##### Input: #####
+- **df**: The first histogram in the output of `stepwise.R`.
+- **snps**: The second item (the list of vectors) in the output of `stepwise.R`.
+- **sortBy**: Can take on the value "beta" or "pvalue", corresponding to the criterion by which the SNPs are sorted.
+
+##### Returns: #####
+- A plot (can be seen in slides 9-12 of my powerpoint).
+
 ###### Todo: ######
 - plotsix
 - plotindividualr2
