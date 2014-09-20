@@ -81,8 +81,20 @@ This function produces the figures in slides 9-12 of my powerpoint. The figures 
 ##### Returns: #####
 - A plot (can be seen in slides 9-12 of my powerpoint).
 
+### plotindividualr2.R ###
+```
+function(n = 5, li.unipval, li.bipval, li.uniaic, li.biaic)
+```
+This function produces the data that the graphs in slide 8. For each of the four methods, it will output a data frame (described in the "Returns" section).
+##### Input: ######
+- **n**: The first n SNPs to analyze.
+- **li.unipval**: The list of length 2 output by testAll.R for unidirectional pvalue.
+- **li.bipval**: The list of length 2 output by testAll.R for bidirectional pvalue.
+- **li.uniAIC**: The list of length 2 output by testAll.R for unidirectional AIC.
+- **li.biAIC**: The list of length 2 output by testAll.R for bidirectional AIC.
+
+##### Returns: #####
+- A data frame that returns the mean value and standard error of r^2 value across all genes for each method.
+
 ###### Todo: ######
-- plotsix
-- plotindividualr2
-- calcanova
 - CV
