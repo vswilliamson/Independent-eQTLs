@@ -71,7 +71,7 @@ A list containing a list and a data frame:
 ```
 plotsix(df, snps, sortBy="beta")
 ```
-This function produces the figures in slides 9-12 of my powerpoint. The figures compare the distribution of SNPs around the TSS for the best eQTL reported by Matrix eQTL, and for the first five SNPs in genes with 5 or more independent eQTLs. It uses firstfive.R. 
+This function produces the figures in slides 9-12 of my powerpoint. The figures compare the distribution of SNPs around the TSS for the best eQTL reported by Matrix eQTL, and for the first five SNPs in genes with 5 or more independent eQTLs. It uses `firstfive.R`. 
 
 ##### Input: #####
 - **df**: The first histogram in the output of `stepwise.R`.
@@ -85,7 +85,7 @@ This function produces the figures in slides 9-12 of my powerpoint. The figures 
 ```
 function(n = 5, li.unipval, li.bipval, li.uniaic, li.biaic)
 ```
-This function produces the data that the graphs in slide 8. For each of the four methods, it will output a data frame (described in the "Returns" section).
+This function produces the data that the graphs show in slide 8. For each of the four methods, it will output a data frame (described in the "Returns" section).
 ##### Input: ######
 - **n**: The first n SNPs to analyze.
 - **li.unipval**: The list of length 2 output by testAll.R for unidirectional pvalue.
@@ -96,5 +96,30 @@ This function produces the data that the graphs in slide 8. For each of the four
 ##### Returns: #####
 - A data frame that returns the mean value and standard error of r^2 value across all genes for each method.
 
-###### Todo: ######
-- CV
+### crossvalidate.R ###
+```
+function(eQTLs, sortBy = c("beta", "pvalue"))
+```
+This function performs cross-validation for each of the four methods of finding independent eQTLs.
+NOTE: The function assumes you have the *.train and *.test data in your environment (produced by setUpEnvironment.R).
+##### Input: ######
+- **eQTLs**: A data frame of the cis-eQTLs that Matrix eQTL outputs. 
+- **sortBy**: Can take on the value "beta" or "pvalue", corresponding to the criterion by which the SNPs are sorted.
+
+##### Returns: #####
+- A data frame with the cross-validation data.
+
+### ggplotnumwise.R ###
+```
+function(df, directory, n = 5, stratify = TRUE)
+```
+This function outputs the graphs shown in slides 21 to 34. It uses `multiplot.R` as a helper function to output multiple plots in an image.
+##### Input: ######
+- **df**: The data frame that `crossvalidate.R` outputs. 
+- **directory**: The directory where the function should output graphs.
+- **n**: The first n SNPs to analyze.
+- **stratify**: If false, outputs the collated data across methods (slides 21-27). If true, outputs the graphs shown in slides 28-34.
+
+##### Returns: #####
+- Visualization of the testing vs. training sets, as shown in slides 21-34.
+
